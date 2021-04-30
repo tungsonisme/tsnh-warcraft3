@@ -1,0 +1,57 @@
+@keyframes fallDown {
+  0% {
+    margin-top: -100vh
+  }
+  50% {
+    margin-top: 1vh;
+  }
+  75% {
+    margin-top: -2vh;
+  }
+  100% {
+    margin-top: 0vh;
+  }
+}
+
+.wrapper {
+  position: absolute;
+  top: 0;
+  right: 1.3vh;
+  width: 40vh;
+  height: 100vh;
+  animation: fallDown 1s;
+}
+
+.background {
+  position: absolute;
+  top: 16vh;
+  right: 0;
+  width: 40vh;
+  height: 53vh;
+  background: rgba(0, 0, 0, 0.7);
+  animation: fallDown 1s;
+}
+
+.topChain {
+  background-image: url("./images/small-top-right-chain.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 43.7vh;
+  height: 20vh;
+  animation: fallDown 1s;
+}
+
+.menuBorder {
+  background-image: url("./images/top-menu.png");
+  background-size: cover;
+  background-size: 42vh 56vh;
+  position: absolute;
+  top: 15.3vh;
+  right: 0;
+  width: 42vh;
+  height: 56vh;
+  animation: fallDown 1s;
+}

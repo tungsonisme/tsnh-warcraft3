@@ -1,0 +1,46 @@
+.background {
+  position: absolute;
+  left: -21.5vh;
+  top: 0;
+  height: 100vh;
+}
+
+.leftBorder {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.4vh;
+  height: 100vh;
+  background-image: url('./images/left-frame.jpg');
+  background-repeat: repeat-y;
+}
+
+.rightBorder {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 1.4vh;
+  height: 100vh;
+  background-image: url('./images/right-frame.jpg');
+  background-repeat: repeat-y;
+}
+
+.leftCorner {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 19.1vh;
+  height: 15vh;
+  background-size: cover;
+  background-image: url('./images/left-corner.png');
+}
+
+.rightCorner {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 19.1vh;
+  height: 15vh;
+  background-size: cover;
+  background-image: url('./images/right-corner.png');
+}
