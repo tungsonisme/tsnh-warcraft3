@@ -1,4 +1,4 @@
-import styles from "./index.module.scss";
+import styles from "./index.module.scss"
 
 const TopMenu = () => (
   <div className={styles.wrapper}>
@@ -6,6 +6,6 @@ const TopMenu = () => (
     <div className={styles.topChain} />
     <div className={styles.menuBorder} />
   </div>
-);
+)
 
-export default TopMenu;
+export default TopMenu

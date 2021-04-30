@@ -1,5 +1,5 @@
-import styles from "./index.module.scss";
+import styles from "./index.module.scss"
 
-const Logo = () => <div className={styles.logo} />;
+const Logo = () => <div className={styles.logo} />
 
-export default Logo;
+export default Logo

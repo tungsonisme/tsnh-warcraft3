@@ -1,6 +1,6 @@
-import Logo from "./Logo";
-import TopMenu from "./TopMenu";
-import BottomMenu from './BottomMenu';
+import Logo from "./Logo"
+import TopMenu from "./TopMenu"
+import BottomMenu from "./BottomMenu"
 
 const HomePage = () => (
   <div>
@@ -8,6 +8,6 @@ const HomePage = () => (
     <TopMenu />
     <BottomMenu />
   </div>
-);
+)
 
-export default HomePage;
+export default HomePage
