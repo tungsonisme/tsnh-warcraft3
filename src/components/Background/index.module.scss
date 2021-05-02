@@ -1,3 +1,14 @@
+.sound {
+  position: absolute;
+  left: 2.8vh;
+  top: 1vh;
+  width: 5vh;
+  height: 5vh;
+  object-fit: cover;
+  z-index: 2;
+  cursor: pointer;
+}
+
 .background {
   position: absolute;
   left: -21.5vh;

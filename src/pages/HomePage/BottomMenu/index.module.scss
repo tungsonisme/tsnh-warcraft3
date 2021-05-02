@@ -32,3 +32,16 @@
   height: 100%;
   animation: fallDown 1s;
 }
+
+.content {
+  position: absolute;
+  top: 2vh;
+  right: 0;
+  width: 35vh;
+  height: 18vh;
+  animation: fallDown 1s;
+
+  > * {
+    margin-top: 4.5vh;
+  }
+}

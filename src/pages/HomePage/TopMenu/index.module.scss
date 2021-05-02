@@ -46,7 +46,6 @@
 
 .menuBorder {
   background-image: url("./images/top-menu.png");
-  background-size: cover;
   background-size: 42vh 56vh;
   position: absolute;
   top: 15.3vh;
@@ -54,4 +53,17 @@
   width: 42vh;
   height: 56vh;
   animation: fallDown 1s;
+}
+
+.content {
+  position: absolute;
+  top: 18vh;
+  right: 0;
+  width: 39vh;
+  height: 51vh;
+  animation: fallDown 1s;
+
+  > * {
+    margin-top: 1.3vh;
+  }
 }

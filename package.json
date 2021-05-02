@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
+    "classnames": "^2.3.1",
     "husky": "^6.0.0",
     "lint-staged": "^10.5.4",
     "node-sass": "^5.0.0",
@@ -19,7 +20,7 @@
     "build": "npm run update-assets && react-scripts build",
     "test": "npm run update-assets && react-scripts test",
     "eject": "npm run update-assets && react-scripts eject",
-    "update-assets": "node internal/assets.js"
+    "update-assets": "node internal/assets.js && eslint src/hocs/withAssetsFetched/assets.js --fix"
   },
   "eslintConfig": {
     "extends": [
