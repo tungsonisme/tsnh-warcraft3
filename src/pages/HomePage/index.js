@@ -2,12 +2,14 @@ import Logo from "./Logo"
 import TopMenu from "./TopMenu"
 import BottomMenu from "./BottomMenu"
 
-const HomePage = () => (
-  <div>
-    <Logo />
-    <TopMenu />
-    <BottomMenu />
-  </div>
-)
+const HomePage = ({ isShow }) => {
+  return (
+    <div>
+      <Logo />
+      <TopMenu isShow={isShow} />
+      <BottomMenu isShow={isShow} />
+    </div>
+  )
+}
 
 export default HomePage

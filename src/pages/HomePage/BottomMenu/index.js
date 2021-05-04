@@ -1,13 +1,18 @@
 import styles from "./index.module.scss"
 import Button from "../../../components/Button"
+import DelayContent from "../../../components/DelayContent"
 
-const BottomMenu = () => (
-  <div className={styles.wrapper}>
+const classnames = require("classnames")
+
+const BottomMenu = ({ isShow }) => (
+  <div
+    className={classnames(styles.wrapper, isShow ? styles.appear : styles.disappear)}
+  >
     <div className={styles.menuBorder} />
 
-    <div className={styles.content}>
-      <Button>Quit</Button>
-    </div>
+    <DelayContent className={styles.content}>
+      <Button disabled={!isShow}>Quit</Button>
+    </DelayContent>
   </div>
 )
 

@@ -34,7 +34,7 @@
     right: 0;
     margin-top: 0.3vh;
     text-align: center;
-    font-size: 2.3vh;
+    font-size: 2.4vh;
     font-weight: normal;
 
     .remainingChars {
@@ -56,6 +56,14 @@
     > span {
       margin-top: 0.9vh;
       margin-left: -0.3vh;
+    }
+  }
+
+  &:disabled {
+    background-image: url(./images/button-disabled.jpg);
+
+    .remainingChars {
+      color: #717171;
     }
   }
 }

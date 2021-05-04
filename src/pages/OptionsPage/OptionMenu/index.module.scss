@@ -31,9 +31,8 @@
 .wrapper {
   position: absolute;
   top: 0;
-  right: 1.3vh;
+  left: 1.3vh;
   width: 40vh;
-  height: 100vh;
 }
 
 .appear {
@@ -48,42 +47,31 @@
 
 .background {
   position: absolute;
-  top: 16vh;
-  right: 0;
-  width: 40vh;
-  height: 53vh;
+  top: 13vh;
+  left: 0;
+  width: 70vh;
+  height: 76vh;
   background: rgba(0, 0, 0, 0.7);
 }
 
-.topChain {
-  background-image: url("./images/small-top-right-chain.png");
-  background-size: cover;
-  background-repeat: no-repeat;
+.menuBorder {
+  background-image: url("./images/option-menu.png");
+  background-size: 72vh 90vh;
   position: absolute;
   top: 0;
-  right: 0;
-  width: 43.7vh;
-  height: 20vh;
-}
-
-.menuBorder {
-  background-image: url("./images/top-menu.png");
-  background-size: 42vh 56vh;
-  position: absolute;
-  top: 15.3vh;
-  right: 0;
-  width: 42vh;
-  height: 56vh;
+  left: 0;
+  width: 72vh;
+  height: 90vh;
 }
 
 .content {
   position: absolute;
-  top: 18vh;
-  right: 0;
-  width: 39vh;
-  height: 51vh;
+  top: 14vh;
+  left: 0;
+  width: 69.5vh;
+  height: 73vh;
 
   > * > * {
-    margin-top: 1.3vh;
+    margin-top: 2.3vh;
   }
 }

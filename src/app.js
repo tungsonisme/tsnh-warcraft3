@@ -1,11 +1,33 @@
+import { useEffect, useState } from "react"
 import styles from "./app.module.scss"
 import Background from "./components/Background"
 import HomePage from "./pages/HomePage"
 import withAssetsFetched from "./hocs/withAssetsFetched"
-import { useEffect, useState } from "react"
+import { observer } from "mobx-react-lite"
+import { useMobxStore } from "./mobx"
+import { EnumPage } from "./mobx/page"
+import withAnimationDelay from "./hocs/withAnimationDelay"
+import OptionsPage from "./pages/OptionsPage"
+
+const pages = [
+  {
+    page: EnumPage.Home,
+    PageComponent: HomePage,
+  },
+  {
+    page: EnumPage.Options,
+    PageComponent: OptionsPage,
+  },
+]
+
+pages.forEach((page) => {
+  page.PageComponent = withAnimationDelay(page.PageComponent)
+})
 
 function App() {
   const [isBackgroundReady, setIsBackgroundReady] = useState(false)
+  const { pageStore } = useMobxStore()
+  const { page: showPage } = pageStore || {}
 
   useEffect(() => {
     setTimeout(() => {
@@ -20,7 +42,9 @@ function App() {
 
         {isBackgroundReady && (
           <div className={styles.content}>
-            <HomePage />
+            {pages.map(({ page, PageComponent }) => (
+              <PageComponent isShow={page === showPage} />
+            ))}
           </div>
         )}
       </div>
@@ -30,4 +54,4 @@ function App() {
   )
 }
 
-export default withAssetsFetched(App)
+export default withAssetsFetched(observer(App))
