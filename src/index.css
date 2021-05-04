@@ -23,3 +23,7 @@ code {
   background-color: black;
   overflow: hidden;
 }
+
+* {
+  cursor: url('assets/images/cursor.png'), auto !important;
+}
