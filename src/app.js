@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import styles from "./app.module.scss"
 import Background from "./components/Background"
 import HomePage from "./pages/HomePage"
-import withAssetsFetched from "./hocs/withAssetsFetched"
 import { observer } from "mobx-react-lite"
 import { useMobxStore } from "./mobx"
 import { EnumPage } from "./mobx/page"
@@ -54,4 +53,4 @@ function App() {
   )
 }
 
-export default withAssetsFetched(observer(App))
+export default observer(App)
