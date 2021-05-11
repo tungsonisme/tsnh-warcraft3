@@ -3,10 +3,11 @@ import styles from "./app.module.scss"
 import Background from "./components/Background"
 import HomePage from "./pages/HomePage"
 import { observer } from "mobx-react-lite"
-import { useMobxStore } from "./mobx"
-import { EnumPage } from "./mobx/page"
+import { usePageStore } from "./mobx/page/context"
+import { EnumPage } from "./mobx/page/data"
 import withAnimationDelay from "./hocs/withAnimationDelay"
 import OptionsPage from "./pages/OptionsPage"
+import SummaryPage from "./pages/SummaryPage"
 
 const pages = [
   {
@@ -17,6 +18,10 @@ const pages = [
     page: EnumPage.Options,
     PageComponent: OptionsPage,
   },
+  {
+    page: EnumPage.Summary,
+    PageComponent: SummaryPage,
+  },
 ]
 
 pages.forEach((page) => {
@@ -25,7 +30,7 @@ pages.forEach((page) => {
 
 function App() {
   const [isBackgroundReady, setIsBackgroundReady] = useState(false)
-  const { pageStore } = useMobxStore()
+  const { store: pageStore } = usePageStore()
   const { page: showPage } = pageStore || {}
 
   useEffect(() => {

@@ -1,9 +1,12 @@
 import React, { useMemo } from "react"
 import styles from "./index.module.scss"
+import { useAudioContext } from "../../contexts/AudioContext"
 
 const classnames = require("classnames")
 
-const Button = ({ className, children, ...rest }) => {
+const Button = ({ className, children, onClick, ...rest }) => {
+  const { playButtonClickAudio } = useAudioContext()
+
   const processedChildren = useMemo(() => {
     if (typeof children === "string") {
       const firstChar = children[0]
@@ -23,7 +26,16 @@ const Button = ({ className, children, ...rest }) => {
     <div className={styles.btnBackground}>
       <div className={styles.btnBorder} />
 
-      <button className={classnames(styles.btn, className)} {...rest}>
+      <button
+        className={classnames(styles.btn, className)}
+        onClick={(...rest) => {
+          playButtonClickAudio()
+          if (onClick) {
+            onClick(...rest)
+          }
+        }}
+        {...rest}
+      >
         <span>{processedChildren}</span>
       </button>
     </div>

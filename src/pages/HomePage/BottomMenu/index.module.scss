@@ -1,3 +1,5 @@
+@import 'styles/variables.scss';
+
 @keyframes fallDown {
   0% {
     margin-top: -100vh
@@ -40,12 +42,12 @@
 
 .appear {
   margin-top: 0;
-  animation: fallDown 1s;
+  animation: fallDown $animation-medium-time;
 }
 
 .disappear {
   margin-top: -100vh;
-  animation: flyUp 0.7s;
+  animation: flyUp $animation-small-time;
 }
 
 .menuBorder {

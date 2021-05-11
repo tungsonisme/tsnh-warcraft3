@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import styles from "./index.module.scss"
+import { animationSmallTime } from "../../consts/animation"
 
 const DelayContent = ({ children, ...rest }) => {
   const [isShow, setIsShow] = useState(false)
@@ -7,7 +8,7 @@ const DelayContent = ({ children, ...rest }) => {
   useEffect(() => {
     setTimeout(() => {
       setIsShow(true)
-    }, 700)
+    }, animationSmallTime)
   }, [])
 
   return (

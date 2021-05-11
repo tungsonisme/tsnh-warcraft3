@@ -1,14 +1,14 @@
 import styles from "./index.module.scss"
 import Button from "../../../components/Button"
-import { EnumPage } from "../../../mobx/page"
-import { useMobxStore } from "../../../mobx"
+import { EnumPage } from "../../../mobx/page/data"
+import { usePageStore } from "../../../mobx/page/context"
 import DelayContent from "../../../components/DelayContent"
 
 const classnames = require("classnames")
 
 const BottomMenu = ({ isShow }) => {
-  const { pageStore } = useMobxStore()
-  const { changePage } = pageStore || {}
+  const { actions } = usePageStore()
+  const { changePage } = actions || {}
 
   return (
     <div

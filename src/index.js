@@ -4,14 +4,17 @@ import "./index.css"
 import App from "./app"
 import reportWebVitals from "./reportWebVitals"
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration"
-import { MobxStoreProvider } from "./mobx"
+import { PageStoreProvider } from "./mobx/page/context"
+import { AudioProvider } from "./contexts/AudioContext"
 
 const renderReactApp = () => {
   ReactDOM.render(
     <React.StrictMode>
-      <MobxStoreProvider>
-        <App />
-      </MobxStoreProvider>
+      <AudioProvider>
+        <PageStoreProvider>
+          <App />
+        </PageStoreProvider>
+      </AudioProvider>
     </React.StrictMode>,
     document.getElementById("root")
   )

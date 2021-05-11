@@ -1,19 +1,34 @@
 import styles from "./index.module.scss"
-import VideoBackgroundVideo from "./videos/background.mp4"
 import SoundAudio from "./images/sound.png"
 import MutedSoundAudio from "./images/muted-sound.png"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
+import { useBackgroundVideo } from "./hooks"
+import { BackgroundStatus } from "./consts"
+import { changeSrc, decreaseVolume, increaseVolume } from "./utils"
+import { animationSmallTime } from "../../consts/animation"
 
-const classNames = require("classnames")
+const classnames = require("classnames")
 
 const Background = () => {
   const videoRef = useRef()
   const [muted, setMuted] = useState(true)
+  const { backgroundStatus, backgroundVideo } = useBackgroundVideo()
+
+  useEffect(() => {
+    const videoDOM = videoRef.current
+
+    decreaseVolume(videoDOM)
+
+    setTimeout(() => {
+      changeSrc(videoDOM, backgroundVideo)
+      increaseVolume(videoDOM)
+    }, animationSmallTime)
+  }, [backgroundVideo])
 
   return (
     <>
       <img
-        className={classNames(styles.sound)}
+        className={classnames(styles.sound)}
         src={muted ? MutedSoundAudio : SoundAudio}
         alt=""
         onClick={() => {
@@ -24,8 +39,18 @@ const Background = () => {
           })
         }}
       />
-      <video ref={videoRef} className={styles.background} autoPlay loop muted>
-        <source src={VideoBackgroundVideo} type="video/mp4" />
+      <video
+        ref={videoRef}
+        className={classnames(
+          styles.background,
+          backgroundStatus === BackgroundStatus.APPEARING && styles.appearing,
+          backgroundStatus === BackgroundStatus.DISAPPEARING && styles.disappearing
+        )}
+        autoPlay
+        loop
+        muted
+      >
+        <source type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
