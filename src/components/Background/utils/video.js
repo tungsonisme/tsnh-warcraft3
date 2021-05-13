@@ -26,7 +26,7 @@ export const changeSrc = (videoDOM, src) => {
 export const decreaseVolume = (videoDOM) => {
   const fadeAudio = setInterval(function () {
     const newVolume = videoDOM.volume - 0.1
-    videoDOM.volume = newVolume < 0 ? 0 : newVolume
+    videoDOM.volume = newVolume < 0.1 ? 0 : newVolume
 
     if (videoDOM.volume < 0.1) {
       clearInterval(fadeAudio)
@@ -37,7 +37,7 @@ export const decreaseVolume = (videoDOM) => {
 export const increaseVolume = (videoDOM) => {
   const fadeAudio = setInterval(function () {
     const newVolume = videoDOM.volume + 0.1
-    videoDOM.volume = newVolume > 1 ? 1 : newVolume
+    videoDOM.volume = newVolume > 0.9 ? 1 : newVolume
 
     if (videoDOM.volume > 0.9) {
       clearInterval(fadeAudio)

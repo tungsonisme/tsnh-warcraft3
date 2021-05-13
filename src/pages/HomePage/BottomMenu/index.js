@@ -11,7 +11,14 @@ const BottomMenu = ({ isShow }) => (
     <div className={styles.menuBorder} />
 
     <DelayContent className={styles.content}>
-      <Button disabled={!isShow}>Quit</Button>
+      <Button
+        disabled={!isShow}
+        onClick={() => {
+          window.location.reload()
+        }}
+      >
+        Quit
+      </Button>
     </DelayContent>
   </div>
 )

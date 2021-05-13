@@ -27,6 +27,12 @@ const PageStoreProvider = ({ children }) => {
         playMenuUpAndDownAudio()
       }
     }
+
+    if (currentPage === EnumPage.Summary) {
+      if (nextPage === EnumPage.Home) {
+        playMenuUpAndDownAudio()
+      }
+    }
   }
 
   return (

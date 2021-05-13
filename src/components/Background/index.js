@@ -20,11 +20,17 @@ const Background = () => {
     const videoDOM = videoRef.current
 
     decreaseVolume(videoDOM)
+
     setTimeout(() => {
       changeSrc(videoDOM, backgroundVideo)
-      increaseVolume(videoDOM)
     }, animationSmallTime)
-  }, [backgroundVideo, backgroundImage])
+
+    if (backgroundVideo) {
+      setTimeout(() => {
+        increaseVolume(videoDOM)
+      }, animationSmallTime * 2)
+    }
+  }, [backgroundVideo])
 
   return (
     <>
