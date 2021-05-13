@@ -26,4 +26,5 @@ code {
 
 * {
   cursor: url('assets/images/cursor.png'), auto !important;
+  user-select: none !important;
 }

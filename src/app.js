@@ -7,6 +7,7 @@ import { usePageStore } from "./mobx/page/context"
 import { EnumPage } from "./mobx/page/data"
 import withAnimationDelay from "./hocs/withAnimationDelay"
 import OptionsPage from "./pages/OptionsPage"
+import ExperiencePage from "./pages/ExperiencePage"
 import SummaryPage from "./pages/SummaryPage"
 
 const pages = [
@@ -21,6 +22,10 @@ const pages = [
   {
     page: EnumPage.Summary,
     PageComponent: SummaryPage,
+  },
+  {
+    page: EnumPage.Experience,
+    PageComponent: ExperiencePage,
   },
 ]
 

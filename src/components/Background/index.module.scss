@@ -11,7 +11,7 @@
   cursor: pointer;
 }
 
-.background {
+.backgroundVideo {
   position: absolute;
   left: -21.5vh;
   top: 0;
@@ -28,6 +28,15 @@
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s $animation-small-time, opacity $animation-small-time linear;
+}
+
+.backgroundImage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 134vh;
+  background-size: contain;
 }
 
 .leftBorder {

@@ -1,0 +1,67 @@
+.wrapper {
+  position: relative;
+  height: 100vh;
+}
+
+.avatar {
+  .avatarBorder {
+    background-image: url("./images/avatar-border.png");
+    background-size: cover;
+    position: absolute;
+    top: 15vh;
+    right: 12vh;
+    width: 38vh;
+    height: 31vh;
+  }
+
+  .avatarImage {
+    background-image: url("./images/avatar-image.jpeg");
+    background-size: cover;
+    position: absolute;
+    top: 16vh;
+    right: 16.2vh;
+    width: 28.4vh;
+    height: 28.5vh;
+  }
+}
+
+.info {
+  position: absolute;
+  top: 49vh;
+  right: 10vh;
+  text-align: center;
+  width: 40vh;
+  color: #dfd100;
+
+  .title {
+    font-size: 2.7vh;
+  }
+
+  .name {
+    font-size: 4vh;
+  }
+}
+
+.description {
+  position: absolute;
+  top: 59vh;
+  right: 11vh;
+  text-align: center;
+  width: 40vh;
+  color: #fdf6e6;
+  font-size: 2.5vh;
+}
+
+.continueBtn {
+  position: absolute;
+  background-image: url("./images/press-any-key.png");
+  background-size: cover;
+  width: 75vh;
+  height: 6.6vh;
+  bottom: 7vh;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+}

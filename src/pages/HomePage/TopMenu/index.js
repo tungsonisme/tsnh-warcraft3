@@ -26,7 +26,9 @@ const TopMenu = ({ isShow }) => {
         <Button disabled={!isShow} onClick={() => changePage(EnumPage.Summary)}>
           Summary
         </Button>
-        <Button disabled={!isShow}>Experience</Button>
+        <Button disabled={!isShow} onClick={() => changePage(EnumPage.Experience)}>
+          Experience
+        </Button>
         <Button disabled={!isShow}>Education</Button>
         <Button disabled={!isShow}>Hobbies</Button>
         <Button disabled={!isShow} onClick={() => changePage(EnumPage.Options)}>

@@ -8,16 +8,16 @@ const usePageStore = () => useContext(PageStoreContext)
 const PageStoreProvider = ({ children }) => {
   const { playMenuUpAndDownAudio, playMenuDownAudio } = useAudioContext()
 
-  const changePage = (nextPage) => {
+  const changePage = (nextPage, withDelay = true) => {
     const { page: currentPage, _changePage: changePageInStore } = pageStore || {}
-    changePageInStore(nextPage)
+    changePageInStore(nextPage, withDelay)
 
     if (currentPage === EnumPage.Home) {
       if (nextPage === EnumPage.Options) {
         playMenuUpAndDownAudio()
       }
 
-      if (nextPage === EnumPage.Summary) {
+      if (nextPage === EnumPage.Experience) {
         playMenuDownAudio()
       }
     }

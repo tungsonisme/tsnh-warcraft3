@@ -1,18 +1,24 @@
 import React from "react"
+import { PageStoreContext } from "../../mobx/page/context"
 
 function withAnimationDelay(WrappedComponent) {
-  return class extends React.Component {
+  class ClassComponent extends React.Component {
     state = {
       shouldMount: this.props.isShow,
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
       const { isShow } = this.props
+      const { store } = this.context
+      const { withDelay } = store
 
       if (prevProps.isShow !== isShow) {
-        setTimeout(() => {
-          this.setState({ shouldMount: isShow })
-        }, 800)
+        setTimeout(
+          () => {
+            this.setState({ shouldMount: isShow })
+          },
+          withDelay ? 800 : 0
+        )
       }
     }
 
@@ -25,6 +31,10 @@ function withAnimationDelay(WrappedComponent) {
       ) : null
     }
   }
+
+  ClassComponent.contextType = PageStoreContext
+
+  return ClassComponent
 }
 
 export default withAnimationDelay
