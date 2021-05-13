@@ -1,0 +1,24 @@
+@import 'styles/variables.scss';
+
+.disappearing {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s $animation-small-time, opacity $animation-small-time linear;
+}
+
+.listCompanyItem {
+  position: absolute;
+  top: 23vh;
+  left: 82vh;
+}
+
+.backButton {
+  position: absolute;
+  bottom: 1.8vh;
+  right: 7.2vh;
+  width: 32vh;
+
+  * {
+    font-size: 2.7vh !important;
+  }
+}

@@ -5,11 +5,11 @@ import { usePageStore } from "../../mobx/page/context"
 import { EnumPage } from "../../mobx/page/data"
 import { usePressAnyKey } from "../../hooks/usePressAnyKey"
 import { useClickAnyWhere } from "../../hooks/useClickAnyWhere"
+import DelayContent from "../../components/DelayContent"
 
 const SummaryPage = ({ isShow }) => {
   const { actions } = usePageStore()
   const { changePage } = actions || {}
-  const [isReallyShow, setIsReallyShow] = useState(false)
 
   const backToHome = useCallback(() => {
     changePage(EnumPage.Home, false)
@@ -18,19 +18,8 @@ const SummaryPage = ({ isShow }) => {
   usePressAnyKey(backToHome)
   useClickAnyWhere(backToHome)
 
-  useEffect(() => {
-    if (isShow) {
-      setTimeout(
-        () => {
-          setIsReallyShow(isShow)
-        },
-        isShow ? animationSmallTime : 0
-      )
-    }
-  }, [isShow])
-
-  return isReallyShow ? (
-    <div className={styles.wrapper}>
+  return isShow ? (
+    <DelayContent className={styles.wrapper}>
       <div className={styles.avatar}>
         <div className={styles.avatarBorder} />
         <div className={styles.avatarImage} />
@@ -49,7 +38,7 @@ const SummaryPage = ({ isShow }) => {
       </div>
 
       <div className={styles.continueBtn} />
-    </div>
+    </DelayContent>
   ) : null
 }
 

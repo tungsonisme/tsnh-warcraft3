@@ -4,9 +4,13 @@ import DelayContent from "../../../components/DelayContent"
 
 const classnames = require("classnames")
 
-const BottomMenu = ({ isShow }) => (
+const BottomMenu = ({ isShow, changingPage }) => (
   <div
-    className={classnames(styles.wrapper, isShow ? styles.appear : styles.disappear)}
+    className={classnames(
+      styles.wrapper,
+      isShow && styles.appear,
+      changingPage && styles.disappear
+    )}
   >
     <div className={styles.menuBorder} />
 

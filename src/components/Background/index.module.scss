@@ -24,6 +24,11 @@
   transition: opacity $animation-small-time linear;
 }
 
+.appearingInstantly {
+  visibility: visible;
+  opacity: 1;
+}
+
 .disappearing {
   visibility: hidden;
   opacity: 0;

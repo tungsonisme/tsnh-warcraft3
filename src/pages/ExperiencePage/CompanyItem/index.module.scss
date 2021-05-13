@@ -1,0 +1,29 @@
+.wrapper {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 2vh;
+}
+
+.buttonWrapper {
+  margin-right: 0.7vh;
+
+  .triangle {
+    width: 0;
+    height: 0;
+    border-top: 0.9vh solid transparent;
+    border-left: 1.2vh solid #cca819;
+    border-bottom: 0.9vh solid transparent;
+  }
+}
+
+.info {
+  .date {
+    font-size: 1.8vh;
+    color: #dfd100;
+  }
+
+  .name {
+    font-size: 2.4vh;
+    color: #fdf6e6;
+  }
+}

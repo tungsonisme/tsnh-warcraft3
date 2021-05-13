@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react"
 import { getBgVideoByPage } from "../utils/video"
 import { animationSmallTime } from "../../../consts/animation"
 import { BackgroundStatus } from "../consts"
+import { EnumPage } from "../../../mobx/page/data"
 
 export const useBackgroundVideo = () => {
   const { store: pageStore } = usePageStore()
@@ -18,17 +19,19 @@ export const useBackgroundVideo = () => {
 
     if (isVideoChange) {
       if (withDelay) {
-        setTimeout(() => {
-          setBackgroundStatus(BackgroundStatus.DISAPPEARING)
-        }, animationSmallTime)
+        setBackgroundStatus(BackgroundStatus.DISAPPEARING)
 
         setTimeout(() => {
           setDisplayBackgroundPage(page)
-        }, animationSmallTime * 2)
+        }, animationSmallTime)
 
         setTimeout(() => {
-          setBackgroundStatus(BackgroundStatus.APPEARING)
-        }, animationSmallTime * 3)
+          setBackgroundStatus(
+            page === EnumPage.Home
+              ? BackgroundStatus.APPEARING_INSTANTLY
+              : BackgroundStatus.APPEARING
+          )
+        }, animationSmallTime * 2)
       } else {
         setDisplayBackgroundPage(page)
       }
@@ -41,5 +44,6 @@ export const useBackgroundVideo = () => {
   return {
     backgroundStatus,
     backgroundVideo: getBgVideoByPage(displayBackgroundPage),
+    displayBackgroundPage,
   }
 }

@@ -9,6 +9,7 @@ export const EnumPage = {
 
 class Data {
   page = EnumPage.Home
+  previousPage = undefined
   withDelay = true
 
   constructor() {
@@ -16,6 +17,7 @@ class Data {
   }
 
   _changePage = (page, withDelay) => {
+    this.previousPage = this.page
     this.page = page
     this.withDelay = withDelay
   }

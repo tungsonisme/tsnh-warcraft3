@@ -3,7 +3,7 @@ import SoundAudio from "./images/sound.png"
 import MutedSoundAudio from "./images/muted-sound.png"
 import { useEffect, useRef, useState } from "react"
 import { useBackgroundVideo } from "./hooks/useBackgroundVideo"
-import { BackgroundStatus } from "./consts"
+import { BackgroundStatus, HavingBorderPages } from "./consts"
 import { changeSrc, decreaseVolume, increaseVolume } from "./utils/video"
 import { animationSmallTime } from "../../consts/animation"
 import { useBackgroundImage } from "./hooks/useBackgroundImage"
@@ -13,7 +13,8 @@ const classnames = require("classnames")
 const Background = () => {
   const videoRef = useRef()
   const [muted, setMuted] = useState(true)
-  const { backgroundStatus, backgroundVideo } = useBackgroundVideo()
+  const { backgroundStatus, backgroundVideo, displayBackgroundPage } =
+    useBackgroundVideo()
   const { backgroundImage } = useBackgroundImage()
 
   useEffect(() => {
@@ -34,7 +35,7 @@ const Background = () => {
 
   return (
     <>
-      {!backgroundImage && (
+      {!backgroundImage && HavingBorderPages.includes(displayBackgroundPage) && (
         <img
           className={classnames(styles.sound)}
           src={muted ? MutedSoundAudio : SoundAudio}
@@ -54,6 +55,8 @@ const Background = () => {
         className={classnames(
           styles.backgroundVideo,
           backgroundStatus === BackgroundStatus.APPEARING && styles.appearing,
+          backgroundStatus === BackgroundStatus.APPEARING_INSTANTLY &&
+            styles.appearingInstantly,
           backgroundStatus === BackgroundStatus.DISAPPEARING && styles.disappearing
         )}
         autoPlay
@@ -69,12 +72,16 @@ const Background = () => {
         style={{ backgroundImage: `url('${backgroundImage}')` }}
       />
 
-      <div className={styles.leftBorder} />
-      <div className={styles.rightBorder} />
-      {!backgroundImage && (
+      {HavingBorderPages.includes(displayBackgroundPage) && (
         <>
-          <div className={styles.leftCorner} />
-          <div className={styles.rightCorner} />
+          <div className={styles.leftBorder} />
+          <div className={styles.rightBorder} />
+          {!backgroundImage && (
+            <>
+              <div className={styles.leftCorner} />
+              <div className={styles.rightCorner} />
+            </>
+          )}
         </>
       )}
     </>
