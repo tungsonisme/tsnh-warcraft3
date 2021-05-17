@@ -7,19 +7,38 @@ export const EnumPage = {
   Experience: 4,
 }
 
+export const EnumPageTransitionStatus = {
+  NONE: 0,
+  DISAPPEARING: 1,
+  APPEARING: 2,
+  BACKGROUND_DISAPPEARING: 3,
+  BACKGROUND_APPEARING: 4,
+  DARK_SCREEN: 5,
+}
+
 class Data {
-  page = EnumPage.Home
+  page = undefined
   previousPage = undefined
-  withDelay = true
+  backgroundPage = undefined
+  pageTransitionStatus = undefined
+  pageTransitionData = {}
 
   constructor() {
     makeAutoObservable(this)
   }
 
-  _changePage = (page, withDelay) => {
+  _changePage = (page) => {
     this.previousPage = this.page
     this.page = page
-    this.withDelay = withDelay
+  }
+
+  _changeBackgroundPage = (backgroundPage) => {
+    this.backgroundPage = backgroundPage
+  }
+
+  _changePageTransitionStatus = (pageTransitionStatus, pageTransitionData) => {
+    this.pageTransitionStatus = pageTransitionStatus
+    this.pageTransitionData = pageTransitionData ? pageTransitionData : {}
   }
 }
 

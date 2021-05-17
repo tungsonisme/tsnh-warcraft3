@@ -1,38 +1,30 @@
+import { observer } from "mobx-react-lite"
 import Logo from "./Logo"
 import TopMenu from "./TopMenu"
 import BottomMenu from "./BottomMenu"
-import { useState } from "react"
-import DelayContent from "../../components/DelayContent"
 import { usePageStore } from "../../mobx/page/context"
-import { EnumPage } from "../../mobx/page/data"
-import { animationSmallTime } from "../../consts/animation"
+import { EnumPageTransitionStatus } from "../../mobx/page/data"
 
-const HomePage = ({ isShow }) => {
-  const { store: pageStore } = usePageStore()
-  const { previousPage } = pageStore || {}
-  const [changingPage, setIsChangingPage] = useState(false)
+const HomePage = () => {
+  const { store: pageStore, actions } = usePageStore()
+  const { pageTransitionStatus } = pageStore || {}
+  const { changePage } = actions || {}
+  const appearing = pageTransitionStatus === EnumPageTransitionStatus.APPEARING
+  const disappearing =
+    pageTransitionStatus === EnumPageTransitionStatus.DISAPPEARING ||
+    pageTransitionStatus === EnumPageTransitionStatus.BACKGROUND_DISAPPEARING
 
   return (
-    <DelayContent
-      delayTime={
-        !previousPage || previousPage === EnumPage.Options
-          ? 0
-          : animationSmallTime * 1.5
-      }
-    >
+    <>
       <Logo />
       <TopMenu
-        isShow={isShow}
-        changingPage={changingPage}
-        setIsChangingPage={setIsChangingPage}
+        appearing={appearing}
+        disappearing={disappearing}
+        changePage={changePage}
       />
-      <BottomMenu
-        isShow={isShow}
-        changingPage={changingPage}
-        setIsChangingPage={setIsChangingPage}
-      />
-    </DelayContent>
+      <BottomMenu appearing={appearing} disappearing={disappearing} />
+    </>
   )
 }
 
-export default HomePage
+export default observer(HomePage)

@@ -1,15 +1,15 @@
 import styles from "./index.module.scss"
-import { observer } from "mobx-react-lite"
 import DelayContent from "../../../components/DelayContent"
 
 const classnames = require("classnames")
 
-const OptionMenu = ({ isShow }) => {
+const OptionMenu = ({ appearing, disappearing }) => {
   return (
     <div
       className={classnames(
         styles.wrapper,
-        isShow ? styles.appear : styles.disappear
+        appearing && styles.appear,
+        disappearing && styles.disappear
       )}
     >
       <div className={styles.background} />
@@ -20,4 +20,4 @@ const OptionMenu = ({ isShow }) => {
   )
 }
 
-export default observer(OptionMenu)
+export default OptionMenu

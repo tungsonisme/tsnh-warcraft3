@@ -1,25 +1,24 @@
 import styles from "./index.module.scss"
-import { useCallback, useEffect, useState } from "react"
-import { animationSmallTime } from "../../consts/animation"
+import { useCallback } from "react"
 import { usePageStore } from "../../mobx/page/context"
 import { EnumPage } from "../../mobx/page/data"
 import { usePressAnyKey } from "../../hooks/usePressAnyKey"
 import { useClickAnyWhere } from "../../hooks/useClickAnyWhere"
-import DelayContent from "../../components/DelayContent"
+import { observer } from "mobx-react-lite"
 
-const SummaryPage = ({ isShow }) => {
+const SummaryPage = () => {
   const { actions } = usePageStore()
   const { changePage } = actions || {}
 
   const backToHome = useCallback(() => {
-    changePage(EnumPage.Home, false)
+    changePage(EnumPage.Home)
   }, [changePage])
 
   usePressAnyKey(backToHome)
   useClickAnyWhere(backToHome)
 
-  return isShow ? (
-    <DelayContent className={styles.wrapper}>
+  return (
+    <>
       <div className={styles.avatar}>
         <div className={styles.avatarBorder} />
         <div className={styles.avatarImage} />
@@ -38,8 +37,8 @@ const SummaryPage = ({ isShow }) => {
       </div>
 
       <div className={styles.continueBtn} />
-    </DelayContent>
-  ) : null
+    </>
+  )
 }
 
-export default SummaryPage
+export default observer(SummaryPage)

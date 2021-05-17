@@ -1,19 +1,22 @@
 import styles from "./index.module.scss"
 import CompanyItem from "./CompanyItem"
 import DelayContent from "../../components/DelayContent"
-import { animationSmallTime } from "../../consts/animation"
 import ButtonTransparent from "../../components/ButtonTransparent"
 import { usePageStore } from "../../mobx/page/context"
-import { EnumPage } from "../../mobx/page/data"
+import { EnumPage, EnumPageTransitionStatus } from "../../mobx/page/data"
+import { observer } from "mobx-react-lite"
 
 const classnames = require("classnames")
 
-const ExperiencePage = ({ isShow }) => {
-  const { actions } = usePageStore()
+const ExperiencePage = () => {
+  const { store, actions } = usePageStore()
+  const { pageTransitionStatus } = store
   const { changePage } = actions || {}
+  const disappearing =
+    pageTransitionStatus === EnumPageTransitionStatus.BACKGROUND_DISAPPEARING
 
-  return isShow ? (
-    <DelayContent className={classnames(!isShow ? styles.disappearing : null)}>
+  return (
+    <DelayContent className={classnames(disappearing ? styles.disappearing : null)}>
       <div className={styles.listCompanyItem}>
         <CompanyItem date="Jun 2021 - Now" name="Shopee" />
         <CompanyItem date="Oct 2020 - Jun 2021" name="SeaGroup (SeaTalk team)" />
@@ -34,7 +37,7 @@ const ExperiencePage = ({ isShow }) => {
         </ButtonTransparent>
       </div>
     </DelayContent>
-  ) : null
+  )
 }
 
-export default ExperiencePage
+export default observer(ExperiencePage)

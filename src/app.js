@@ -2,13 +2,12 @@ import { useEffect, useState } from "react"
 import styles from "./app.module.scss"
 import Background from "./components/Background"
 import HomePage from "./pages/HomePage"
-import { observer } from "mobx-react-lite"
 import { usePageStore } from "./mobx/page/context"
-import { EnumPage } from "./mobx/page/data"
-import withAnimationDelay from "./hocs/withAnimationDelay"
+import { EnumPage, EnumPageTransitionStatus } from "./mobx/page/data"
 import OptionsPage from "./pages/OptionsPage"
 import ExperiencePage from "./pages/ExperiencePage"
 import SummaryPage from "./pages/SummaryPage"
+import { observer } from "mobx-react-lite"
 
 const pages = [
   {
@@ -29,19 +28,19 @@ const pages = [
   },
 ]
 
-pages.forEach((page) => {
-  page.PageComponent = withAnimationDelay(page.PageComponent)
-})
-
 function App() {
   const [isBackgroundReady, setIsBackgroundReady] = useState(false)
-  const { store: pageStore } = usePageStore()
-  const { page: showPage } = pageStore || {}
+  const { store: pageStore, actions } = usePageStore()
+  const { page: showPage, pageTransitionStatus } = pageStore || {}
+  const { changePage } = actions || {}
+  const isDarkScreen = pageTransitionStatus === EnumPageTransitionStatus.DARK_SCREEN
 
   useEffect(() => {
     setTimeout(() => {
       setIsBackgroundReady(true)
+      changePage(EnumPage.Home)
     }, 500)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
@@ -51,14 +50,14 @@ function App() {
 
         {isBackgroundReady && (
           <div className={styles.content}>
-            {pages.map(({ page, PageComponent }) => (
-              <PageComponent isShow={page === showPage} />
-            ))}
+            {pages.map(({ page, PageComponent }) =>
+              page === showPage ? <PageComponent key={page} /> : null
+            )}
           </div>
         )}
       </div>
 
-      {!isBackgroundReady && <div className={styles.darkScreen} />}
+      {(!isBackgroundReady || isDarkScreen) && <div className={styles.darkScreen} />}
     </>
   )
 }
