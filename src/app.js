@@ -48,7 +48,7 @@ function App() {
     setTimeout(() => {
       setIsBackgroundReady(true)
       changePage(EnumPage.Home)
-    }, 500)
+    }, 1500)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -67,6 +67,8 @@ function App() {
       </div>
 
       {(!isBackgroundReady || isDarkScreen) && <div className={styles.darkScreen} />}
+
+      {!isBackgroundReady && <div className={styles.splashScreen} />}
     </>
   )
 }

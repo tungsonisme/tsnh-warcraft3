@@ -1,3 +1,5 @@
+@import 'styles/variables.scss';
+
 .logo {
     background-image: url('./images/logo.png');
     width: 46vh;
@@ -8,4 +10,10 @@
     position: absolute;
     top: 0;
     left: 10px;
+}
+
+.disappearing {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s $animation-smaller-time, opacity $animation-smaller-time linear;
 }

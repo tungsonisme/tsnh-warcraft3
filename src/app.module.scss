@@ -23,3 +23,16 @@
   z-index: 10;
   background-color: black;
 }
+
+.splashScreen {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 11;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('./assets/images/splash-screen.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: initial;
+}

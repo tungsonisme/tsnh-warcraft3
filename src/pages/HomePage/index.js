@@ -16,7 +16,7 @@ const HomePage = () => {
 
   return (
     <>
-      <Logo />
+      <Logo disappearing={disappearing} />
       <TopMenu
         appearing={appearing}
         disappearing={disappearing}

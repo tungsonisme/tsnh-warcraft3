@@ -22,12 +22,16 @@ const ExperiencePage = () => {
         <CompanyItem
           date="Jan 2018 - Feb 2019"
           name="SGH Asia"
-          onClick={() => changePage(EnumPage.SGH)}
+          onClick={() => {
+            changePage(EnumPage.SGH)
+          }}
         />
         <CompanyItem
           date="Sep 2016 - Nov 2017"
           name="Smartdatics"
-          onClick={() => changePage(EnumPage.Smartdatics)}
+          onClick={() => {
+            changePage(EnumPage.Smartdatics)
+          }}
         />
       </div>
 

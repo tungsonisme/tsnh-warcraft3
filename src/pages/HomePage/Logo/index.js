@@ -1,5 +1,9 @@
 import styles from "./index.module.scss"
 
-const Logo = () => <div className={styles.logo} />
+const classnames = require("classnames")
+
+const Logo = ({ disappearing }) => (
+  <div className={classnames(styles.logo, disappearing && styles.disappearing)} />
+)
 
 export default Logo
