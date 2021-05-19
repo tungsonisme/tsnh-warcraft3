@@ -18,6 +18,7 @@ const ButtonTransparent = ({
     <div className={styles.btnBackground} style={wrapperStyle}>
       <div className={styles.leftBorder} style={{ opacity }} />
       <div className={styles.centerBorder} style={{ opacity }} />
+      <div className={styles.hoverOval} style={{ opacity }} />
       <div className={styles.rightBorder} style={{ opacity }} />
 
       <button

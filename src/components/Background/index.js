@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react"
 import { HavingBorderPages } from "./consts"
 import { changeSrc, getBgVideoByPage } from "./utils/video"
 import { usePageStore } from "../../mobx/page/context"
-import { EnumPageTransitionStatus } from "../../mobx/page/data"
+import { EnumBackgroundTransitionStatus } from "../../mobx/page/data"
 import { observer } from "mobx-react-lite"
 import { getBgImageByPage } from "./utils/image"
 
@@ -15,14 +15,13 @@ const Background = () => {
   const videoRef = useRef()
   const [muted, setMuted] = useState(true)
   const { store: pageStore } = usePageStore()
-  const { pageTransitionStatus, backgroundPage } = pageStore || {}
+  const { backgroundPage, backgroundTransitionStatus } = pageStore || {}
   const backgroundVideo = getBgVideoByPage(backgroundPage)
   const backgroundImage = getBgImageByPage(backgroundPage)
   const appearing =
-    pageTransitionStatus === EnumPageTransitionStatus.BACKGROUND_APPEARING ||
-    pageTransitionStatus === EnumPageTransitionStatus.DARK_SCREEN
+    backgroundTransitionStatus === EnumBackgroundTransitionStatus.APPEARING
   const disappearing =
-    pageTransitionStatus === EnumPageTransitionStatus.BACKGROUND_DISAPPEARING
+    backgroundTransitionStatus === EnumBackgroundTransitionStatus.DISAPPEARING
 
   useEffect(() => {
     const videoDOM = videoRef.current
@@ -73,19 +72,41 @@ const Background = () => {
         Your browser does not support the video tag.
       </video>
 
-      <div
-        className={styles.backgroundImage}
-        style={{ backgroundImage: `url('${backgroundImage}')` }}
-      />
+      {backgroundImage && (
+        <div
+          className={styles.backgroundImage}
+          style={{ backgroundImage: `url('${backgroundImage}')` }}
+        />
+      )}
 
       {HavingBorderPages.includes(backgroundPage) && (
         <>
-          <div className={styles.leftBorder} />
-          <div className={styles.rightBorder} />
+          <div
+            className={classnames(
+              styles.leftBorder,
+              disappearing && styles.disappearing
+            )}
+          />
+          <div
+            className={classnames(
+              styles.rightBorder,
+              disappearing && styles.disappearing
+            )}
+          />
           {!backgroundImage && (
             <>
-              <div className={styles.leftCorner} />
-              <div className={styles.rightCorner} />
+              <div
+                className={classnames(
+                  styles.leftCorner,
+                  disappearing && styles.disappearing
+                )}
+              />
+              <div
+                className={classnames(
+                  styles.rightCorner,
+                  disappearing && styles.disappearing
+                )}
+              />
             </>
           )}
         </>

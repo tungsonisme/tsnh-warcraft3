@@ -1,0 +1,27 @@
+.logo {
+  position: absolute;
+  width: 27vh;
+  height: 27vh;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  top: 29.5vh;
+  left: 9.5vh;
+}
+
+.infos {
+  position: absolute;
+  top: 28.5vh;
+  left: 45vh;
+  width: 70vh;
+  font-size: 2.7vh;
+  color: white;
+  background: rgba(58, 49, 33, 0.6);
+  padding: 2vh;
+  border: 1vh solid #14150e;
+  border-radius: 1.5vh;
+
+  .info:not(:last-child) {
+    margin-bottom: 2vh;
+  }
+}

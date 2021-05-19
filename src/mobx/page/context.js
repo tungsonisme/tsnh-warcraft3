@@ -1,5 +1,9 @@
 import { createContext, useCallback, useContext } from "react"
-import pageStore, { EnumPage, EnumPageTransitionStatus } from "./data"
+import pageStore, {
+  EnumBackgroundTransitionStatus,
+  EnumPage,
+  EnumPageTransitionStatus,
+} from "./data"
 import { useAudioContext } from "../../contexts/AudioContext"
 import { animationSmallTime, darkScreenTime } from "../../consts/animation"
 import { wait } from "../../utils/async"
@@ -16,121 +20,168 @@ const PageStoreProvider = ({ children }) => {
         page: currentPage,
         _changePage: updatePage,
         _changeBackgroundPage: updateBackground,
-        _changePageTransitionStatus: updateTransition,
+        _changePageTransitionStatus: updatePageTransition,
+        _changeBackgroundTransitionStatus: updateBackgroundTransition,
       } = pageStore || {}
 
-      if (!currentPage) {
-        updateBackground(nextPage)
+      const showDarkScreen = async (time) => {
+        updatePage(undefined)
+        updatePageTransition(EnumPageTransitionStatus.DARK_SCREEN)
+        await wait(time || darkScreenTime)
+      }
 
+      const showHomePage = async () => {
+        // Menu goes down
+        updatePage(nextPage)
+        updatePageTransition(EnumPageTransitionStatus.APPEARING)
+        playMenuDownAudio()
         await wait(animationSmallTime)
 
+        // Reset status
+        updatePageTransition(EnumPageTransitionStatus.NONE)
+      }
+
+      if (!currentPage) {
+        // Background appears and wait after
+        updateBackground(nextPage)
+        await wait(animationSmallTime)
+
+        // Menu goes down
         playMenuDownAudio()
         updatePage(nextPage)
-        updateTransition(EnumPageTransitionStatus.APPEARING)
-
+        updatePageTransition(EnumPageTransitionStatus.APPEARING)
         await wait(animationSmallTime)
 
-        updateTransition(EnumPageTransitionStatus.NONE)
+        // Reset status
+        updatePageTransition(EnumPageTransitionStatus.NONE)
       }
 
       if (currentPage === EnumPage.Home) {
         if (nextPage === EnumPage.Summary) {
-          updateTransition(EnumPageTransitionStatus.DISAPPEARING)
+          // Menu goes up
+          updatePageTransition(EnumPageTransitionStatus.DISAPPEARING)
           playMenuDownAudio()
+          await wait(animationSmallTime)
 
-          await wait(animationSmallTime + 100)
+          // Dark screen appears
+          await showDarkScreen()
 
-          updateTransition(EnumPageTransitionStatus.DARK_SCREEN)
-
-          await wait(darkScreenTime)
-
-          updateTransition(EnumPageTransitionStatus.NONE)
+          // Background and page appear at the same time
+          updatePageTransition(EnumPageTransitionStatus.NONE)
           updateBackground(nextPage)
           updatePage(nextPage)
         }
 
         if (nextPage === EnumPage.Experience) {
-          updateTransition(EnumPageTransitionStatus.DISAPPEARING)
+          // Menu goes up
+          updatePageTransition(EnumPageTransitionStatus.DISAPPEARING)
           playMenuDownAudio()
-
           await wait(animationSmallTime)
 
-          updateTransition(EnumPageTransitionStatus.BACKGROUND_DISAPPEARING)
+          // Background disappears
+          updateBackgroundTransition(EnumBackgroundTransitionStatus.DISAPPEARING)
+          await wait(animationSmallTime)
+
+          // Background and page appear at the same time
           updatePage(nextPage)
-
-          await wait(animationSmallTime)
-
-          updateTransition(EnumPageTransitionStatus.DARK_SCREEN)
-
-          await wait(darkScreenTime)
-
+          updatePageTransition(EnumPageTransitionStatus.APPEARING)
           updateBackground(nextPage)
-          updateTransition(EnumPageTransitionStatus.BACKGROUND_APPEARING)
-
+          updateBackgroundTransition(EnumBackgroundTransitionStatus.APPEARING)
           await wait(animationSmallTime)
 
-          updateTransition(EnumPageTransitionStatus.NONE)
+          // Reset status
+          updatePageTransition(EnumPageTransitionStatus.NONE)
         }
 
         if (nextPage === EnumPage.Options) {
-          updateTransition(EnumPageTransitionStatus.DISAPPEARING)
+          // Menu goes up
+          updatePageTransition(EnumPageTransitionStatus.DISAPPEARING)
           playMenuUpAndDownAudio()
-
           await wait(animationSmallTime)
 
-          updateTransition(EnumPageTransitionStatus.APPEARING)
+          // Menu goes down
+          updatePageTransition(EnumPageTransitionStatus.APPEARING)
           updatePage(nextPage)
         }
       }
 
       if (currentPage === EnumPage.Summary) {
         if (nextPage === EnumPage.Home) {
+          // Dark screen appears
+          await showDarkScreen()
+
+          // Change background and page disappears
+          updatePageTransition(EnumPageTransitionStatus.DISAPPEARING)
           updateBackground(nextPage)
-          playMenuDownAudio()
-          updatePage(nextPage)
+          await wait(animationSmallTime / 2)
 
-          updateTransition(EnumPageTransitionStatus.DARK_SCREEN)
-
-          await wait(darkScreenTime)
-
-          updateTransition(EnumPageTransitionStatus.APPEARING)
-
-          await wait(animationSmallTime)
-
-          updateTransition(EnumPageTransitionStatus.NONE)
+          // Back to home page
+          await showHomePage()
         }
       }
 
       if (currentPage === EnumPage.Experience) {
         if (nextPage === EnumPage.Home) {
-          updateTransition(EnumPageTransitionStatus.BACKGROUND_DISAPPEARING)
-
+          // Page and background disappears
+          updatePageTransition(EnumPageTransitionStatus.DISAPPEARING)
+          updateBackgroundTransition(EnumBackgroundTransitionStatus.DISAPPEARING)
           await wait(animationSmallTime)
 
-          updateTransition(EnumPageTransitionStatus.DARK_SCREEN)
-
-          await wait(darkScreenTime)
-
-          updatePage(nextPage)
-          updateTransition(EnumPageTransitionStatus.APPEARING)
+          // Change background and page disappears
+          updatePage(undefined)
+          updatePageTransition(EnumPageTransitionStatus.NONE)
           updateBackground(nextPage)
-          playMenuDownAudio()
-
+          updateBackgroundTransition(EnumBackgroundTransitionStatus.APPEARING)
           await wait(animationSmallTime)
 
-          updateTransition(EnumPageTransitionStatus.NONE)
+          // Back to home page
+          await showHomePage()
+        }
+
+        if ([EnumPage.SGH, EnumPage.Smartdatics].includes(nextPage)) {
+          // Page and background disappears
+          updatePageTransition(EnumPageTransitionStatus.DISAPPEARING)
+          updateBackgroundTransition(EnumBackgroundTransitionStatus.DISAPPEARING)
+          await wait(animationSmallTime)
+
+          // Dark screen appears
+          await showDarkScreen()
+
+          // Page and background appears at the same time
+          updatePageTransition(EnumPageTransitionStatus.NONE)
+          updateBackgroundTransition(EnumBackgroundTransitionStatus.NONE)
+          updatePage(nextPage)
+          updateBackground(nextPage)
         }
       }
 
       if (currentPage === EnumPage.Options) {
         if (nextPage === EnumPage.Home) {
-          updateTransition(EnumPageTransitionStatus.DISAPPEARING)
+          // Menu goes up
+          updatePageTransition(EnumPageTransitionStatus.DISAPPEARING)
           playMenuUpAndDownAudio()
-
           await wait(animationSmallTime)
 
-          updateTransition(EnumPageTransitionStatus.APPEARING)
+          // Back to home page
+          await showHomePage()
+        }
+      }
+
+      if ([EnumPage.SGH, EnumPage.Smartdatics].includes(currentPage)) {
+        if (nextPage === EnumPage.Experience) {
+          // Dark screen appears
+          updateBackgroundTransition(EnumBackgroundTransitionStatus.DISAPPEARING)
+          await showDarkScreen(animationSmallTime / 2)
+
+          // Background and page appear at the same time
           updatePage(nextPage)
+          updatePageTransition(EnumPageTransitionStatus.NONE)
+          updateBackground(nextPage)
+          updateBackgroundTransition(EnumBackgroundTransitionStatus.APPEARING)
+          await wait(animationSmallTime)
+
+          // Reset status
+          // updatePageTransition(EnumPageTransitionStatus.NONE)
         }
       }
     },

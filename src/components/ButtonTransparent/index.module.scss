@@ -22,6 +22,24 @@
   z-index: -1;
 }
 
+.hoverOval {
+  width: 80%;
+  height: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 80%;
+  position: absolute;
+  top: 27%;
+  left: 10%;
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  display: none;
+  z-index: -1;
+}
+
+.btnBackground:hover .hoverOval {
+  display: inline;
+}
+
 .rightBorder {
   position: absolute;
   right: 0;

@@ -8,6 +8,7 @@ import OptionsPage from "./pages/OptionsPage"
 import ExperiencePage from "./pages/ExperiencePage"
 import SummaryPage from "./pages/SummaryPage"
 import { observer } from "mobx-react-lite"
+import CompanyPage from "./pages/CompanyPage"
 
 const pages = [
   {
@@ -25,6 +26,14 @@ const pages = [
   {
     page: EnumPage.Experience,
     PageComponent: ExperiencePage,
+  },
+  {
+    page: EnumPage.SGH,
+    PageComponent: () => <CompanyPage page={EnumPage.SGH} />,
+  },
+  {
+    page: EnumPage.Smartdatics,
+    PageComponent: () => <CompanyPage page={EnumPage.Smartdatics} />,
   },
 ]
 
