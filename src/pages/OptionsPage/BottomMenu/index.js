@@ -5,7 +5,7 @@ import DelayContent from "../../../components/DelayContent"
 
 const classnames = require("classnames")
 
-const BottomMenu = ({ appearing, disappearing, changePage }) => {
+const BottomMenu = ({ appearing, disappearing, changePage, option }) => {
   return (
     <div
       className={classnames(
@@ -17,7 +17,7 @@ const BottomMenu = ({ appearing, disappearing, changePage }) => {
       <div className={styles.menuBorder} />
 
       <DelayContent className={styles.content}>
-        <Button disabled={disappearing}>OK</Button>
+        <Button disabled={disappearing || !option}>OK</Button>
         <Button disabled={disappearing} onClick={() => changePage(EnumPage.Home)}>
           Cancel
         </Button>

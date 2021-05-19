@@ -1,0 +1,40 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 0;
+}
+
+.barWrapper {
+  position: relative;
+  width: 48vh;
+  height: 2.6vh;
+  margin-right: 2vh;
+
+  .bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-image: url('./images/bar.png');
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+  .circle {
+    position: absolute;
+    top: 0;
+    background-image: url('./images/circle.png');
+    background-size: cover;
+    width: 2.5vh;
+    height: 2.5vh;
+  }
+}
+
+.lowText, .highText {
+  color: #e1e1e1;
+  font-size: 2.5vh;
+}
+
+.lowText {
+  margin-right: 2vh;
+}

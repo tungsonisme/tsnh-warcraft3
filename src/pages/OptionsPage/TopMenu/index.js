@@ -1,10 +1,11 @@
 import styles from "./index.module.scss"
 import Button from "../../../components/Button"
 import DelayContent from "../../../components/DelayContent"
+import { SettingOption } from "../index"
 
 const classnames = require("classnames")
 
-const TopMenu = ({ appearing, disappearing }) => {
+const TopMenu = ({ appearing, disappearing, setOption }) => {
   return (
     <div
       className={classnames(
@@ -18,8 +19,22 @@ const TopMenu = ({ appearing, disappearing }) => {
 
       <DelayContent className={styles.content}>
         <Button disabled={disappearing}>Gameplay</Button>
-        <Button disabled={disappearing}>Video</Button>
-        <Button disabled={disappearing}>Sound</Button>
+        <Button
+          disabled={disappearing}
+          onClick={() => {
+            setOption(SettingOption.Video)
+          }}
+        >
+          Video
+        </Button>
+        <Button
+          disabled={disappearing}
+          onClick={() => {
+            setOption(SettingOption.Sound)
+          }}
+        >
+          Sound
+        </Button>
       </DelayContent>
     </div>
   )

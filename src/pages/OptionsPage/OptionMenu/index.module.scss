@@ -35,14 +35,17 @@
   top: 0;
   left: 1.3vh;
   width: 40vh;
+  display: none;
 }
 
 .appear {
+  display: initial;
   margin-top: 0;
   animation: fallDown $animation-medium-time;
 }
 
 .disappear {
+  display: initial;
   margin-top: -100vh;
   animation: flyUp $animation-small-time;
 }
@@ -72,8 +75,25 @@
   left: 0;
   width: 69.5vh;
   height: 73vh;
+  padding-left: 2vh;
+  padding-right: 2vh;
 
   > * > * {
     margin-top: 2.3vh;
   }
+}
+
+.title {
+  color: #e1e1e1;
+  margin-bottom: -0.5vh;
+  font-size: 2.8vh;
+}
+
+.checkboxTitle {
+  font-size: 2.5vh;
+  color: #d0ae1e;
+}
+
+.settingRow {
+  margin-bottom: 3vh;
 }

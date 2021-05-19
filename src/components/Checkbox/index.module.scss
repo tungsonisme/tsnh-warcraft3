@@ -1,0 +1,20 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.checkboxImage {
+  width: 4vh;
+  height: 3.8vh;
+  margin-right: 1.7vh;
+  background-size: cover;
+  background-position: center;
+
+  &.checked {
+    background-image: url('./images/check.png');
+  }
+
+  &.unchecked {
+    background-image: url('./images/uncheck.png');
+  }
+}
