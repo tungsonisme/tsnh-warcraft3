@@ -11,21 +11,23 @@ import SGHLogo from "./images/sgh.jpg"
 
 const pageData = {
   [EnumPage.SGH]: {
+    title: "Web Frontend",
     logo: SGHLogo,
     infos: [
-      "In charge of building front-end components for all web applications.",
-      "Participating in developing generic FormBuilder web application.",
+      "HTML, CSS, jQuery / Ruby on Rails, Java Spring Boot",
+      "In charge of building components for frontend of all web applications.",
       "Communicating directly (verbal/oral) to German colleagues for analyzing requirements.",
       "Writing documentations and presenting about applications in English.",
     ],
   },
   [EnumPage.Smartdatics]: {
+    title: "Web Fullstack",
     logo: SmartdaticsLogo,
     infos: [
-      "Build web applications, mobile applications with jQuery, React, Redux, Typescript in ES6.",
-      "Build application for visualizing and interacting data with D3.js, jQuery.",
-      "Design database, build REST API for e-commerce applications with NodeJS.",
-      "Other tasks to be assigned.",
+      "React, React Native, Redux, Typescript, jQuery / Node.js, Java Spring Boot, PHP",
+      "Build application for visualizing and interacting data with D3.js",
+      "Build e-commerce web application using Wordpress and WooCommerce",
+      "Design database, build REST API for e-commerce applications using NodeJS.",
     ],
   },
 }
@@ -33,7 +35,7 @@ const pageData = {
 const CompanyPage = ({ page }) => {
   const { actions } = usePageStore()
   const { changePage } = actions || {}
-  const { logo, infos } = pageData[page]
+  const { title, logo, infos } = pageData[page]
 
   const backToHome = useCallback(() => {
     changePage(EnumPage.Experience)
@@ -44,6 +46,7 @@ const CompanyPage = ({ page }) => {
 
   return (
     <>
+      <div className={styles.title}>{title}</div>
       <div className={styles.logo} style={{ backgroundImage: `url(${logo})` }} />
       <div className={styles.infos}>
         {infos.map((info, index) => (

@@ -25,12 +25,13 @@ const SummaryPage = () => {
       </div>
 
       <div className={styles.info}>
-        <div className={styles.title}>Frontend Developer</div>
+        <div className={styles.title}>Sr. Web Frontend</div>
         <div className={styles.name}>TungSon, Nguyen</div>
       </div>
 
       <div className={styles.description}>
-        <div>Coding lover</div>
+        <div>React, Redux, Mobx</div>
+        <div>English (verbal/oral)</div>
         <div>Full of responsibilities</div>
         <div>Burning the midnight oil</div>
         <div>Sense of humor</div>
