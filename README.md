@@ -1,4 +1,12 @@
-#Warcraft 3 - Frozen Throne
+# Warcraft 3 - Frozen Throne
+
+Portfolio page with design inspired by Warcraft3 - Frozen throne
+
+### Getting Started (in dev mode)
+
+`npm install`
+
+`npm start`
 
 ### Screenshot
 <img src="docs/home.png" alt="" width="512" height="384" />
