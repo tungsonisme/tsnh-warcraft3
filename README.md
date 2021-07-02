@@ -1,6 +1,6 @@
-# Warcraft 3 - Frozen Throne
+# TSNH Warcraft III
 
-Portfolio page with design inspired by Warcraft3 - Frozen throne
+Portfolio page with design inspired by Warcraft III - Frozen throne
 
 ### Getting Started (in dev mode)
 
